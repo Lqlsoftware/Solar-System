@@ -2,8 +2,7 @@ package com.lqlsoftware.SolarSystem.utils;
 
 
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 
 /**
  * Created by robinlu on 2017/7/3.
@@ -11,6 +10,10 @@ import java.awt.event.WindowEvent;
 public class GameFrame extends Frame {
 
     private Image offScreenImage;  //图形缓存
+
+    protected int mouse_x, mouse_y;
+
+    protected int mouse_dx, mouse_dy;
 
     public Image getOffScreenImage() {
         if(offScreenImage == null)
@@ -29,6 +32,23 @@ public class GameFrame extends Frame {
             @Override
             public void windowClosing(WindowEvent e) {
                 System.exit(0);
+            }
+        });
+
+        addMouseMotionListener(new MouseMotionAdapter() {
+
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                mouse_x = e.getX();
+                mouse_y = e.getY();
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                mouse_dx = mouse_x == 0 ? 0 : e.getX() - mouse_x;
+                mouse_dy = mouse_y == 0 ? 0 : e.getY() - mouse_y;
+                mouse_x = e.getX();
+                mouse_y = e.getY();
             }
         });
 

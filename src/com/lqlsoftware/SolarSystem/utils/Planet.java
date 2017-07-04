@@ -43,8 +43,7 @@ public class Planet extends Star {
         this.center = center;
     }
 
-    @Override
-    public void drawBy(Graphics g) {
+    public void drawBy(Graphics g, int mouse_dx, int mouse_dy) {
         if (isDynamic) {
             img = dynamicPhotoMap.get(counter);
             g.drawImage(img, (int)location_x, (int)location_y, width, height, null);
@@ -55,6 +54,7 @@ public class Planet extends Star {
             count = count + dynamicPhotoNum / 2 / Math.PI * speed;
         } else
             g.drawImage(img, (int)location_x, (int)location_y, width, height, null);
+        shortAxis = shortAxis + mouse_dy / 2 > GameSetting.MAIN_HEIGHT / 2 ? shortAxis : shortAxis + mouse_dy / 2;
         location_x = center.getLocation_x() + center.getWidth() / 2 + longAxis * Math.cos(degree);
         location_y = center.getLocation_y() + center.getHeight() / 2 + shortAxis * Math.sin(degree);
         degree += speed;
