@@ -10,12 +10,20 @@ import java.awt.event.WindowEvent;
  */
 public class GameFrame extends Frame {
 
+    private Image offScreenImage;  //图形缓存
+
+    public Image getOffScreenImage() {
+        if(offScreenImage == null)
+            return this.createImage(800, 600);
+        else
+            return offScreenImage;
+    }
+
     public void launchFrame() {
         setSize(GameSetting.MAIN_WIDTH, GameSetting.MAIN_HEIGHT);
         setLocation(GameSetting.LOCATION_X, GameSetting.LOCATION_Y);
         setVisible(true);
 
-        new PaintThread().run();
 
         addWindowListener(new WindowAdapter() {
             @Override
@@ -23,6 +31,8 @@ public class GameFrame extends Frame {
                 System.exit(0);
             }
         });
+
+        new PaintThread().run();
     }
 
     /*
@@ -34,11 +44,24 @@ public class GameFrame extends Frame {
              while (true) {
                  repaint();
                  try {
-                     Thread.sleep(50);
+                     Thread.sleep(10);
                  } catch (InterruptedException e) {
                      e.printStackTrace();
                  }
              }
          }
+    }
+
+    @Override
+    public void update(Graphics g) {
+        // 获取缓存区
+        Image offScreen = getOffScreenImage();
+        Graphics temp = offScreen.getGraphics();
+
+        // 将内容输出到缓存区
+        paint(temp);
+
+        // 显示缓存区
+        g.drawImage(offScreen, 0, 0, null);
     }
 }
