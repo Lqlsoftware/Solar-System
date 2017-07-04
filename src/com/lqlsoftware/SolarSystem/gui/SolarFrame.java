@@ -25,8 +25,12 @@ public class SolarFrame extends GameFrame {
                 1960, 1080, null);
         bgDegree += 0.05;
         bgDegree %= 360;
-        Sun.drawBy(g);
+
+        Earth.drawTrace(g);
         Earth.drawBy(g, mouse_dx, mouse_dy);
+        mouse_dx = 0;
+        mouse_dy = 0;
+        Sun.drawBy(g);
     }
 
     public static void main(String[] args) {
