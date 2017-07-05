@@ -17,7 +17,7 @@ public class GameFrame extends Frame {
 
     public Image getOffScreenImage() {
         if(offScreenImage == null)
-            return this.createImage(800, 600);
+            return this.createImage(GameSetting.MAIN_WIDTH, GameSetting.MAIN_HEIGHT);
         else
             return offScreenImage;
     }
