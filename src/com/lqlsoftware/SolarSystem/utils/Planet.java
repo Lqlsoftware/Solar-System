@@ -17,7 +17,7 @@ public class Planet extends Star {
 
     private Star center;
 
-    double degree;
+    double xdegree, ydegree;
 
     protected double count;
 
@@ -29,6 +29,7 @@ public class Planet extends Star {
         this.shortAxis = shortAxis;
         this.speed = speed;
         this.center = center;
+        this.ydegree = Math.PI / 2;
     }
 
     public Planet(String dynamicPhotoPath, int width, int height,
@@ -41,6 +42,7 @@ public class Planet extends Star {
         this.shortAxis = shortAxis;
         this.speed = speed;
         this.center = center;
+        this.ydegree = Math.PI / 2;
     }
 
     public void drawBy(Graphics g, int mouse_dx, int mouse_dy) {
@@ -62,15 +64,15 @@ public class Planet extends Star {
         Color color = g.getColor();
         g.setColor(Color.white);
         g.drawOval((int)(center.getLocation_x() + center.getWidth() / 2 - longAxis),
-                (int)(center.getLocation_y() + center.getHeight() / 2 - shortAxis),
-                (int)(2 * longAxis), (int)(2 * shortAxis));
+                (int)(center.getLocation_y() + center.getHeight() / 2 - shortAxis * Math.sin(ydegree)),
+                (int)(2 * longAxis), (int)(2 * shortAxis * Math.sin(ydegree)));
         g.setColor(color);
     }
 
     public void move(int mouse_dx, int mouse_dy) {
-        shortAxis = shortAxis + mouse_dy / 2 > GameSetting.MAIN_HEIGHT / 2 ? shortAxis : shortAxis + mouse_dy / 2;
-        location_x = center.getLocation_x() + center.getWidth() / 2 + longAxis * Math.cos(degree) - this.getWidth() / 2;
-        location_y = center.getLocation_y() + center.getHeight() / 2 + shortAxis * Math.sin(degree) - this.getHeight() / 2;
-        degree += speed;
+        ydegree = ydegree + mouse_dy * Math.PI / GameSetting.MAIN_HEIGHT;
+        location_x = center.getLocation_x() + center.getWidth() / 2 + longAxis * Math.cos(xdegree) - this.getWidth() / 2;
+        location_y = center.getLocation_y() + center.getHeight() / 2 + shortAxis * Math.sin(xdegree) * Math.sin(ydegree) - this.getHeight() / 2;
+        xdegree += speed;
     }
 }
