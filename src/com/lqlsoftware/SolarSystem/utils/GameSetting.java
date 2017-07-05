@@ -5,9 +5,9 @@ package com.lqlsoftware.SolarSystem.utils;
  */
 public class GameSetting {
 
-    public static final int MAIN_WIDTH = 800;
+    public static final int MAIN_WIDTH = 1024;
 
-    public static final int MAIN_HEIGHT = 600;
+    public static final int MAIN_HEIGHT = 768;
 
     public static final int LOCATION_X = 100;
 

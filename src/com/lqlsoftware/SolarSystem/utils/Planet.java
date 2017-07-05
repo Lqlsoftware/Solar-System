@@ -1,7 +1,5 @@
 package com.lqlsoftware.SolarSystem.utils;
 
-import org.omg.CORBA.MARSHAL;
-
 import java.awt.*;
 
 /**
@@ -64,8 +62,8 @@ public class Planet extends Star {
         Color color = g.getColor();
         g.setColor(Color.white);
         g.drawOval((int)(center.getLocation_x() + center.getWidth() / 2 - longAxis),
-                (int)(center.getLocation_y() + center.getHeight() / 2 - shortAxis * Math.sin(ydegree)),
-                (int)(2 * longAxis), (int)(2 * shortAxis * Math.sin(ydegree)));
+                (int)(center.getLocation_y() + center.getHeight() / 2 - shortAxis * Math.abs(Math.sin(ydegree))),
+                (int)(2 * longAxis), (int)(2 * shortAxis * Math.abs(Math.sin(ydegree))));
         g.setColor(color);
     }
 
