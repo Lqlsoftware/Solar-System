@@ -17,16 +17,16 @@ public class SolarFrame extends GameFrame {
             GameSetting.MAIN_WIDTH / 2, GameSetting.MAIN_HEIGHT / 2, 23, 1);
 
     Planet Earth = new Planet("images/Earth/", 40, 40,
-            300, 200, 0.02, Sun, 86, 37);
+            500, 220, 0.02, Sun, 86, 37);
 
     Planet Earth1 = new Planet("images/Earth/", 40, 40,
-            270, 180, 0.018, Sun, 86, 37);
+            400, 190, 0.018, Sun, 86, 37);
 
     Planet Earth2 = new Planet("images/Earth/", 40, 40,
-            240, 160, 0.016, Sun, 86, 37);
+            250, 150, 0.016, Sun, 86, 37);
 
     Planet Earth3 = new Planet("images/Earth/", 40, 40,
-            200, 140, 0.01, Sun, 86, 37);
+            200, 120, 0.01, Sun, 86, 37);
 
     public void paint(Graphics g) {
         g.drawImage(GameUtil.rotateImage(background, bgDegree),
