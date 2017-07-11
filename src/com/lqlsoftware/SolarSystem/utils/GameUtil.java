@@ -27,6 +27,7 @@ public class GameUtil {
         return bi;
     }
 
+    // 图片旋转
     public static BufferedImage rotateImage(BufferedImage bufferedimage, double degree)
     {
         int w = bufferedimage.getWidth();
